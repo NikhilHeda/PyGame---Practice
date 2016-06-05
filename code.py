@@ -59,8 +59,12 @@ def gameIntro():
 		message_to_screen("Press C to play or Q to quit.", black, y_displace = 180)
 		pygame.display.update()
 		clock.tick(5)
-		
-		
+
+def randAppleGen():
+	randAppleX = round( random.randrange(0, display_width - appleThickness) ) # / 10.0 ) * 10 
+	randAppleY = round( random.randrange(0, display_height - appleThickness) ) # / 10.0 ) * 10 
+	return randAppleX, randAppleY
+
 def snake(block_size, snakelist):
 	
 	if direction == "right":
@@ -104,8 +108,7 @@ def gameLoop():
 	lead_x_change = 10
 	lead_y_change = 0
 	
-	randAppleX = round( random.randrange(0, display_width - appleThickness) ) # / 10.0 ) * 10 
-	randAppleY = round( random.randrange(0, display_height - appleThickness) ) # / 10.0 ) * 10 
+	randAppleX, randAppleY = randAppleGen()
 
 	snakeList = []
 	snakeLength = 1
@@ -157,8 +160,6 @@ def gameLoop():
 		
 		gameDisplay.fill(white)
 		
-		# pygame.draw.rect(gameDisplay, red, [randAppleX, randAppleY, appleThickness, appleThickness])
-		
 		gameDisplay.blit(apple_image, (randAppleX, randAppleY))
 		
 		snakeHead = []
@@ -177,27 +178,11 @@ def gameLoop():
 		
 		pygame.display.update()
 		
-		'''
-		if lead_x == randAppleX and lead_y == randAppleY:
-			snakeLength += 1
-			randAppleX = round( random.randrange(0, display_width - block_size) / 10.0 ) * 10 
-			randAppleY = round( random.randrange(0, display_height - block_size) / 10.0 ) * 10 
-		'''
-		
-		'''
-		if  randAppleX <= lead_x <= randAppleX + appleThickness:
-			if  randAppleY <= lead_y <= randAppleY + appleThickness:
-				snakeLength += 1
-				randAppleX = round( random.randrange(0, display_width - block_size) )# / 10.0 ) * 10 
-				randAppleY = round( random.randrange(0, display_height - block_size) )# / 10.0 ) * 10 
-		'''
-		
 		if  randAppleX < lead_x < randAppleX + appleThickness or randAppleX < lead_x + block_size < randAppleX + appleThickness:
 			if  randAppleY < lead_y < randAppleY + appleThickness or randAppleY < lead_y + block_size < randAppleY + appleThickness:
 				snakeLength += 1
-				randAppleX = round( random.randrange(0, display_width - appleThickness) ) # / 10.0 ) * 10 
-				randAppleY = round( random.randrange(0, display_height - appleThickness) ) # / 10.0 ) * 10 
-
+				randAppleX, randAppleY = randAppleGen()
+		
 		clock.tick(FPS)
 
 	pygame.quit()
