@@ -6,3 +6,6 @@ Buttons
 
 3. change color of button on hover
 	using pygame.mouse.get_pos()
+	
+4. clicked response from button
+	using pygame.mouse.get_pressed()

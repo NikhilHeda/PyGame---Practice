@@ -87,9 +87,9 @@ def gameIntro():
 		message_to_screen("the enemy tank before they destroy you.", black, y_displace = 10)
 		message_to_screen("The more enemies you destroy, the harder it gets", black, y_displace = 50)
 		
-		button("Play", 150, 500, 100, 50, green, light_green)
-		button("Controls", 350, 500, 100, 50, yellow, light_yellow)
-		button("Quit", 550, 500, 100, 50, red, light_red)
+		button("Play", 150, 500, 100, 50, green, light_green, action = "play")
+		button("Controls", 350, 500, 100, 50, yellow, light_yellow, action = "controls")
+		button("Quit", 550, 500, 100, 50, red, light_red, action = "quit")
 		
 		pygame.display.update()
 		clock.tick(5)
@@ -113,11 +113,20 @@ def message_to_screen(msg, color, y_displace = 0, size = "small"):
 	textRect.center = (display_width / 2), (display_height / 2) + y_displace
 	gameDisplay.blit(textSurf, textRect)
 
-def button(text, x, y, width, height, inactive_color, active_color):
+def button(text, x, y, width, height, inactive_color, active_color, action = None):
 	cur = pygame.mouse.get_pos()
+	click = pygame.mouse.get_pressed()
 	
 	if x + width > cur[0] > x and y + height > cur[1] > y:
 		pygame.draw.rect(gameDisplay, active_color, (x, y, width, height))
+		if click[0] == 1 and action != None:
+			if action == "quit":
+				pygame.quit()
+				quit()
+			elif action == "controls":
+				pass
+			elif action == "play":
+				gameLoop()
 	else:
 		pygame.draw.rect(gameDisplay, inactive_color, (x, y, width, height))
 	
