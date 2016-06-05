@@ -1,0 +1,6 @@
+Making it look good !
+
+1. centering the text.
+
+2. text surface is the surface where we put the text
+		we make a function text_objects()
