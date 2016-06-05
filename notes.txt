@@ -1,3 +1,3 @@
-Pause and gameover
+Drawing Stuff
 
-1. Without clearing the screen
+1. pygame.PixelArray()
