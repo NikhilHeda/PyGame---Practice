@@ -1,0 +1,5 @@
+Snake Length rules
+
+1. snake is represented as a list, with the x and y cordinates of te snake blocks.
+
+2. Varibles : snakeList, snakeHead
