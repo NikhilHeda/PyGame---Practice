@@ -1,7 +1,7 @@
-More Snake Functionality
+Lengthen the snake
 
-1. moving snake list to the begining of gameloop
+1. increase snake length by 1 in collision with the apple
 
-2. but length keeps increasing, hence we define another variable called snake length to check the lenght.
-
-3. if the length is more, the we delete the first element (the oldest head), because we are appending at the end of the snake list a block everytime.
+2. Snake collision with itself
+	checking if the snake head is there in the snakelist, if yes, then COLLISION !
+	(except the last element because, that is the head itself !, so we ignore tht)
