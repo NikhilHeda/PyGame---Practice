@@ -1,6 +1,10 @@
 Making it look good !
 
-1. centering the text.
-
-2. text surface is the surface where we put the text
-		we make a function text_objects()
+1. Making the Snake Head:
+	using sprites
+	
+2. adding sprites:
+	defining the image, always in the begining
+	
+	pygame.image.load('path')
+	
