@@ -1,0 +1,39 @@
+Basic Frame work
+
+1.
+import pygame
+
+2.
+Initializes all the modules required for pygame, returns a tuple (successfull init, unsuccessfull init)
+x = pygame.init() 
+print(x)
+
+3. 
+Surface : Background/canvas to which we draw and update.
+
+gameDisplay = pygame.display.set_mode((800, 600))
+
+1st arg : tuple (width, height)
+returns pygame.surface object
+
+4.
+updating the surface
+
+pygame.display.flip()
+
+(or)
+
+pygame.display.update()
+
+does the same thing,
+difference:
+	flip : flip-book, motion is percieved motion, updates the entire surface at once
+	
+	update : certain (specified) areas are updated, if no parameters are given, entire surface is updated(like in case of flip).
+	
+	
+5.
+exiting pygame
+
+pygame.quit()	# Uninitializes all the modules.
+quit() 			# very important

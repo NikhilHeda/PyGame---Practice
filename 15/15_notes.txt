@@ -1,0 +1,13 @@
+Adding apples (random squares)
+
+1. random:
+	
+	import random
+	
+	randAppleX = random.randrange(0, display_width - block_size)
+	randAppleY = random.randrange(0, display_height - block_size)
+	
+2. draw:
+	a) ordering matters
+	b) use pygame.draw.rect()
+	

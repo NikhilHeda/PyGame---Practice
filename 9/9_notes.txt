@@ -1,0 +1,13 @@
+User Control
+
+1. long key press handling:
+	
+	for event in pygame.event.get():
+	if event.type == pygame.KEYDOWN:
+		if event.key == pygame.K_LEFT:
+			# code to start
+	if event.type == pygame.KEYUP:
+		if event.key == pygame.K_LEFT:
+			# code to stop
+
+2. We should still handle boundary conditions.

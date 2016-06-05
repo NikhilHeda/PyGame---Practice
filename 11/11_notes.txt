@@ -1,0 +1,15 @@
+Boundaries
+
+1. Game Structure:
+	A) GAME LOOP
+	
+	B) EVENT HANDLING
+	
+	C) GAME LOGIC
+	
+	D) GRAPHIC RENDERING 
+	
+	E) UPDATING THE DISPLAY
+
+2. Barriers / Boundaries:
+	handling: asking if we are over that boundary or not.

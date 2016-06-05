@@ -1,0 +1,18 @@
+Adding more functionality to the game
+
+1. moving up and down
+		
+		for event in pygame.event.get():
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					lead_x_change = -10
+					lead_y_change = 0
+				elif event.key == pygame.K_RIGHT:
+					lead_x_change = 10
+					lead_y_change = 0
+				elif event.key == pygame.K_UP:
+					lead_y_change = -10
+					lead_x_change = 0
+				elif event.key == pygame.K_DOWN:
+					lead_y_change = 10
+					lead_x_change = 0

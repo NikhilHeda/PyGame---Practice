@@ -1,0 +1,6 @@
+Eating the apple
+
+1. getting the nearest '10'
+	round(x / 10.0) * 10.0
+	
+2. handling for cross over of snake on apple

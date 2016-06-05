@@ -1,0 +1,16 @@
+Adding text to screen
+
+1. define a function to communicate with user, good practice.
+
+2. 	pygame.font.SysFont(None, font_size)
+	font.render() # font object.render
+	gameDisplay.blit() : 
+	
+	font = pygame.font.SysFont(None, font_size)
+
+	def message_to_screen(msg, color):
+		screen_text = font.render(msg, True, color)
+		gameDisplay.blit(screen_text, [display_width / 2, display_height / 2])
+
+3. time.sleep(x)
+	waits for x seconds, not a good way to wait, because it forces the game to wait.

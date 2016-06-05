@@ -1,0 +1,7 @@
+Dont Hardcode stuff
+
+1. USE VARIABLES !
+
+2. Easier to change later on, if we want to.
+
+3. zeroes are okay, but numerals, NO !

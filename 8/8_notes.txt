@@ -1,0 +1,12 @@
+Frames per second
+
+1. define a "clocked variable", and use it in the pygame's clock
+
+2. initialize before the game loop.
+
+	clock = pygame.time.Clock()		# returns a pygame Clock object, outside game loop
+	FPS = 30						# 30 is most popular for games.
+	clock.tick(FPS)
+	
+3. Dont change the fps, try to change the movement variables, to change the speed of the game.
+

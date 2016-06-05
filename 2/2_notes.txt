@@ -1,0 +1,28 @@
+Events
+
+1. Title:
+
+pygame.display.set_caption('Title goes here')
+
+
+2.
+Game Loop:
+	loops through the game until the game is over or game is exitted.
+	
+	gameExit = False
+	while not gameExit:
+		# Code
+		
+3. Event Handling:
+	
+	for event in pygame.event.get():
+		print(event)
+		
+	pygame gives the events, we handle it.
+
+Game Structure :
+	1. GAME LOOP
+	
+	2. EVENT HANDLING
+	
+	3. GAME LOGIC
