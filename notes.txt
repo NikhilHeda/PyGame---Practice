@@ -1,5 +1,7 @@
-Snake Length rules
+More Snake Functionality
 
-1. snake is represented as a list, with the x and y cordinates of te snake blocks.
+1. moving snake list to the begining of gameloop
 
-2. Varibles : snakeList, snakeHead
+2. but length keeps increasing, hence we define another variable called snake length to check the lenght.
+
+3. if the length is more, the we delete the first element (the oldest head), because we are appending at the end of the snake list a block everytime.
