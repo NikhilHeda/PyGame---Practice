@@ -7,6 +7,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (34, 177, 76)
+light_green = (0, 255, 0)
 yellow = (255, 255, 0)
 
 display_width = 800
@@ -51,8 +52,7 @@ def pause():
 					paused = False
 				elif event.key == pygame.K_q:
 					pygame.quit()
-					quit()				
-		# gameDisplay.fill(white)
+					quit()
 
 		clock.tick(5)
 		
@@ -83,7 +83,12 @@ def gameIntro():
 		message_to_screen("The more enemies you destroy, the harder it gets", black, y_displace = 50)
 		# message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
 		
-		pygame.draw.rect(gameDisplay, green, (150, 500, 100, 50))
+		cur = pygame.mouse.get_pos()
+		if 150 + 100 > cur[0] > 150 and 500 + 50 > cur[1] > 500:
+			pygame.draw.rect(gameDisplay, light_green, (150, 500, 100, 50))
+		else:
+			pygame.draw.rect(gameDisplay, green, (150, 500, 100, 50))
+			
 		pygame.draw.rect(gameDisplay, yellow, (350, 500, 100, 50))
 		pygame.draw.rect(gameDisplay, red, (550, 500, 100, 50))
 		

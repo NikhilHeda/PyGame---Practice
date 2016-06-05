@@ -1,3 +1,8 @@
-Drawing Stuff
+Buttons
 
-1. pygame.PixelArray()
+1. Make rectangles
+
+2. Make a text_on_button to put text on the button
+
+3. change color of button on hover
+	using pygame.mouse.get_pos()
