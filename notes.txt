@@ -1,6 +1,5 @@
-Crossing over boundaries
+Fixing some stuff
 
-1. if apple thickness is more than the the snake, then crossing over the apple, is not handled properly, only cross over the top - left block works fine.
+1. snake is moving in intervals of 10.
 
-2. Solution:
-		see theblocks, x boundaries and y boundaries, and thenc we check if the snake is within these boundaries.
+2. if its not like that ?

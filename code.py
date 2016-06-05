@@ -40,8 +40,8 @@ def gameLoop():
 	lead_x_change = 0
 	lead_y_change = 0
 	
-	randAppleX = round( random.randrange(0, display_width - block_size) / 10.0 ) * 10 
-	randAppleY = round( random.randrange(0, display_height - block_size) / 10.0 ) * 10 
+	randAppleX = round( random.randrange(0, display_width - block_size) ) # / 10.0 ) * 10 
+	randAppleY = round( random.randrange(0, display_height - block_size) ) # / 10.0 ) * 10 
 
 	snakeList = []
 	snakeLength = 1
@@ -53,6 +53,9 @@ def gameLoop():
 			message_to_screen("Press C to Continue, Q to quit.", red)
 			pygame.display.update()
 			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					gameExit = True
+					gameOver = False
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_q:
 						gameExit = True
@@ -84,6 +87,7 @@ def gameLoop():
 		lead_y += lead_y_change
 		
 		gameDisplay.fill(white)
+		
 		appleThickness = 30
 		pygame.draw.rect(gameDisplay, red, [randAppleX, randAppleY, appleThickness, appleThickness])
 		
@@ -113,8 +117,8 @@ def gameLoop():
 		if  randAppleX <= lead_x <= randAppleX + appleThickness:
 			if  randAppleY <= lead_y <= randAppleY + appleThickness:
 				snakeLength += 1
-				randAppleX = round( random.randrange(0, display_width - block_size) / 10.0 ) * 10 
-				randAppleY = round( random.randrange(0, display_height - block_size) / 10.0 ) * 10 
+				randAppleX = round( random.randrange(0, display_width - block_size) )# / 10.0 ) * 10 
+				randAppleY = round( random.randrange(0, display_height - block_size) )# / 10.0 ) * 10 
 
 		clock.tick(FPS)
 
