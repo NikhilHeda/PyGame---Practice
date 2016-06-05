@@ -5,3 +5,7 @@ Making it look good !
 
 2. Font styles:
 	Font (more flexible) / SysFont : is the System Font, the first parameter is the font style
+
+3. Start Screen:
+	runs one time,
+	can be done multiple times, but we have already handled that.

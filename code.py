@@ -29,6 +29,20 @@ smallfont = pygame.font.SysFont("comicsansms", 25)
 medfont = pygame.font.SysFont("comicsansms", 50)
 largefont = pygame.font.SysFont("comicsansms", 80)
 
+def gameIntro():
+	intro = True
+	
+	while intro:
+		gameDisplay.fill(white)
+		message_to_screen("Welcome to Slither", green, y_displace = -100, size = "large")
+		message_to_screen("The objective is to eat apples", black, y_displace = -30)
+		message_to_screen("The more apples you eat the longer you get !", black, y_displace = 10)
+		message_to_screen("If you run into the edges, or yourself, you die !", black, y_displace = 50)
+		message_to_screen("Press C to play or Q to quit.", black, y_displace = 180)
+		pygame.display.update()
+		clock.tick(FPS)
+		
+		
 def snake(block_size, snakelist):
 	
 	if direction == "right":
@@ -168,4 +182,5 @@ def gameLoop():
 	pygame.quit()
 	quit()
 
+gameIntro()
 gameLoop()
