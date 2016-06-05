@@ -1,10 +1,5 @@
 Making it look good !
 
-1. Making the Snake Head:
-	using sprites
-	
-2. adding sprites:
-	defining the image, always in the begining
-	
-	pygame.image.load('path')
-	
+1. Making the Snake Head rotate:
+	pygame.transform.rotate(image, degrees)
+	return the rotated image
