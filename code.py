@@ -6,7 +6,8 @@ pygame.init()
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
-green = (0, 155, 0)
+green = (34, 177, 76)
+yellow = (255, 255, 0)
 
 display_width = 800
 display_height = 600
@@ -80,7 +81,16 @@ def gameIntro():
 		message_to_screen("The objective is to shoot and destroy", black, y_displace = -30)
 		message_to_screen("the enemy tank before they destroy you.", black, y_displace = 10)
 		message_to_screen("The more enemies you destroy, the harder it gets", black, y_displace = 50)
-		message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
+		# message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
+		
+		pygame.draw.rect(gameDisplay, green, (150, 500, 100, 50))
+		pygame.draw.rect(gameDisplay, yellow, (350, 500, 100, 50))
+		pygame.draw.rect(gameDisplay, red, (550, 500, 100, 50))
+		
+		text_to_button("Play", black, 150, 500, 100, 50)
+		text_to_button("Controls", black, 350, 500, 100, 50)
+		text_to_button("Quit", black, 550, 500, 100, 50)
+		
 		pygame.display.update()
 		clock.tick(5)
 
@@ -92,6 +102,11 @@ def text_objects(text, color, size):
 	elif size == "large":
 		textSurface = largefont.render(text, True, color)
 	return textSurface, textSurface.get_rect()
+
+def text_to_button(msg, color, buttonx, buttony, buttonwidth, buttonheight, size = "small"):
+	textSurf, textRect = text_objects(msg, color, size)
+	textRect.center = (buttonx + (buttonwidth / 2)) , (buttony + (buttonheight / 2))
+	gameDisplay.blit(textSurf, textRect)
 
 def message_to_screen(msg, color, y_displace = 0, size = "small"):
 	textSurf, textRect = text_objects(msg, color, size)
