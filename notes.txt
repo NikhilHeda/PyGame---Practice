@@ -1,5 +1,0 @@
-Fixing some stuff
-
-1. snake is moving in intervals of 10.
-
-2. if its not like that ?

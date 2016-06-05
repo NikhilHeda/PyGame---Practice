@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 
 FPS = 30
 
-block_size = 10
+block_size = 20
 
 font = pygame.font.SysFont(None, 25)
 
@@ -114,12 +114,20 @@ def gameLoop():
 			randAppleY = round( random.randrange(0, display_height - block_size) / 10.0 ) * 10 
 		'''
 		
+		'''
 		if  randAppleX <= lead_x <= randAppleX + appleThickness:
 			if  randAppleY <= lead_y <= randAppleY + appleThickness:
 				snakeLength += 1
 				randAppleX = round( random.randrange(0, display_width - block_size) )# / 10.0 ) * 10 
 				randAppleY = round( random.randrange(0, display_height - block_size) )# / 10.0 ) * 10 
-
+		'''
+		
+		if  randAppleX < lead_x < randAppleX + appleThickness or randAppleX < lead_x + block_size < randAppleX + appleThickness:
+			if  randAppleY < lead_y < randAppleY + appleThickness or randAppleY < lead_y + block_size < randAppleY + appleThickness:
+				snakeLength += 1
+				randAppleX = round( random.randrange(0, display_width - block_size) ) # / 10.0 ) * 10 
+				randAppleY = round( random.randrange(0, display_height - block_size) ) # / 10.0 ) * 10 
+				
 		clock.tick(FPS)
 
 	pygame.quit()
