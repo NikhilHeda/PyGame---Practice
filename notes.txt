@@ -1,5 +1,4 @@
 Making it look good !
 
-1. Making the Snake Head rotate:
-	pygame.transform.rotate(image, degrees)
-	return the rotated image
+1. Menu screens:
+	functionality to message to screen

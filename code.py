@@ -47,11 +47,11 @@ def text_objects(text, color):
 	textSurface = font.render(text, True, color)
 	return textSurface, textSurface.get_rect()
 		
-def message_to_screen(msg, color):
+def message_to_screen(msg, color, y_displace = 0):
 	# screen_text = font.render(msg, True, color)
 	# gameDisplay.blit(screen_text, [display_width / 2, display_height / 2])
 	textSurf, textRect = text_objects(msg, color)
-	textRect.center = (display_width / 2), (display_height / 2)
+	textRect.center = (display_width / 2), (display_height / 2) + y_displace
 	gameDisplay.blit(textSurf, textRect)
 
 def gameLoop():
@@ -75,7 +75,8 @@ def gameLoop():
 	
 		while gameOver:
 			gameDisplay.fill(white)
-			message_to_screen("Press C to Continue, Q to quit.", red)
+			message_to_screen("Game Over.", red, y_displace = -50)
+			message_to_screen("Press C to Continue, Q to quit.", black)
 			pygame.display.update()
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
