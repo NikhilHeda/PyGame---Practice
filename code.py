@@ -1,33 +1,149 @@
 import pygame
+import random
 
 pygame.init()
 
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
+green = (0, 155, 0)
 
-gameDisplay = pygame.display.set_mode((800, 600))
+display_width = 800
+display_height = 600
 
-gameDisplay.fill(blue)
+gameDisplay = pygame.display.set_mode((display_width, display_height))
+pygame.display.set_caption('Tanks')
 
-Pix = pygame.PixelArray(gameDisplay)
+# icon = pygame.image.load('apple.png')
+# pygame.display.set_icon(icon)
 
-Pix[10][10] = green
+pygame.display.update()
 
-pygame.draw.line(gameDisplay, red, (200, 300), (500, 500), 5)
+# snake_head_image = pygame.image.load('snake.png')
+# apple_image = pygame.image.load('apple.png')
 
-pygame.draw.circle(gameDisplay, red, (200, 200), 100)
+clock = pygame.time.Clock()
 
-pygame.draw.rect(gameDisplay, green, (150, 150, 200, 100))
+FPS = 15
 
-pygame.draw.polygon(gameDisplay, white, ( (140, 5), (200, 16), (88, 333) ))
+block_size = 20
+appleThickness = 30
 
-while True:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			pygame.quit()
-			quit()
+smallfont = pygame.font.SysFont("comicsansms", 25)
+medfont = pygame.font.SysFont("comicsansms", 50)
+largefont = pygame.font.SysFont("comicsansms", 80)
 
+def pause():
+	paused = True
+	
+	message_to_screen("Paused", black, -100, size = 'large')
+	message_to_screen("Press C to continue or Q to Quit", black, 25)
 	pygame.display.update()
+	
+	while paused:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_c:
+					paused = False
+				elif event.key == pygame.K_q:
+					pygame.quit()
+					quit()				
+		# gameDisplay.fill(white)
+
+		clock.tick(5)
+		
+def score(score):
+	text = smallfont.render("Score: " + str(score), True, black)
+	gameDisplay.blit(text, [0, 0])
+
+def gameIntro():
+	intro = True
+	
+	while intro:
+	
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_c:
+					intro = False
+				if event.key == pygame.K_q:
+					pygame.quit()
+					quit()
+
+		gameDisplay.fill(white)
+		message_to_screen("Welcome to Tanks", green, y_displace = -100, size = "large")
+		message_to_screen("The objective is to shoot and destroy", black, y_displace = -30)
+		message_to_screen("the enemy tank before they destroy you.", black, y_displace = 10)
+		message_to_screen("The more enemies you destroy, the harder it gets", black, y_displace = 50)
+		message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
+		pygame.display.update()
+		clock.tick(5)
+
+def text_objects(text, color, size):
+	if size == "small":
+		textSurface = smallfont.render(text, True, color)
+	elif size == "medium":
+		textSurface = medfont.render(text, True, color)
+	elif size == "large":
+		textSurface = largefont.render(text, True, color)
+	return textSurface, textSurface.get_rect()
+
+def message_to_screen(msg, color, y_displace = 0, size = "small"):
+	textSurf, textRect = text_objects(msg, color, size)
+	textRect.center = (display_width / 2), (display_height / 2) + y_displace
+	gameDisplay.blit(textSurf, textRect)
+
+def gameLoop():	
+	gameExit = False
+	gameOver = False
+	
+	while not gameExit:
+	
+		if gameOver:
+			message_to_screen("Game Over.", red, y_displace = -50, size = "large")
+			message_to_screen("Press C to Continue, Q to quit.", black, y_displace = 50, size = "medium")
+			pygame.display.update()
+			
+		while gameOver:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					gameExit = True
+					gameOver = False
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_q:
+						gameExit = True
+						gameOver = False
+					elif event.key == pygame.K_c:
+						gameLoop()
+		
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				gameExit = True
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					pass
+				elif event.key == pygame.K_RIGHT:
+					pass
+				elif event.key == pygame.K_UP:
+					pass
+				elif event.key == pygame.K_DOWN:
+					pass
+				elif event.key == pygame.K_p:
+					pause()
+		
+		gameDisplay.fill(white)
+		
+		pygame.display.update()
+		
+		clock.tick(FPS)
+
+	pygame.quit()
+	quit()
+
+gameIntro()
+gameLoop()
