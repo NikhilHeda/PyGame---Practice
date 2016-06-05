@@ -38,6 +38,10 @@ largefont = pygame.font.SysFont("comicsansms", 80)
 def pause():
 	paused = True
 	
+	message_to_screen("Paused", black, -100, size = 'large')
+	message_to_screen("Press C to continue or Q to Quit", black, 25)
+	pygame.display.update()
+	
 	while paused:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -48,12 +52,9 @@ def pause():
 					paused = False
 				elif event.key == pygame.K_q:
 					pygame.quit()
-					quit()
-					
-		gameDisplay.fill(white)
-		message_to_screen("Paused", black, -100, size = 'large')
-		message_to_screen("Press C to continue or Q to Quit", black, 25)
-		pygame.display.update()
+					quit()				
+		# gameDisplay.fill(white)
+
 		clock.tick(5)
 		
 def score(score):
@@ -140,11 +141,13 @@ def gameLoop():
 	
 	while not gameExit:
 	
-		while gameOver:
-			gameDisplay.fill(white)
+		if gameOver:
 			message_to_screen("Game Over.", red, y_displace = -50, size = "large")
 			message_to_screen("Press C to Continue, Q to quit.", black, y_displace = 50, size = "medium")
 			pygame.display.update()
+			
+		while gameOver:
+			# gameDisplay.fill(white)
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					gameExit = True
