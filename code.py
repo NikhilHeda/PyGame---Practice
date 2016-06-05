@@ -5,10 +5,15 @@ pygame.init()
 
 white = (255, 255, 255)
 black = (0, 0, 0)
-red = (255, 0, 0)
+
+red = (200, 0, 0)
+light_red = (255, 0, 0)
+
 green = (34, 177, 76)
 light_green = (0, 255, 0)
-yellow = (255, 255, 0)
+
+yellow = (200, 200, 0)
+light_yellow = (255, 255, 0)
 
 display_width = 800
 display_height = 600
@@ -81,20 +86,10 @@ def gameIntro():
 		message_to_screen("The objective is to shoot and destroy", black, y_displace = -30)
 		message_to_screen("the enemy tank before they destroy you.", black, y_displace = 10)
 		message_to_screen("The more enemies you destroy, the harder it gets", black, y_displace = 50)
-		# message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
 		
-		cur = pygame.mouse.get_pos()
-		if 150 + 100 > cur[0] > 150 and 500 + 50 > cur[1] > 500:
-			pygame.draw.rect(gameDisplay, light_green, (150, 500, 100, 50))
-		else:
-			pygame.draw.rect(gameDisplay, green, (150, 500, 100, 50))
-			
-		pygame.draw.rect(gameDisplay, yellow, (350, 500, 100, 50))
-		pygame.draw.rect(gameDisplay, red, (550, 500, 100, 50))
-		
-		text_to_button("Play", black, 150, 500, 100, 50)
-		text_to_button("Controls", black, 350, 500, 100, 50)
-		text_to_button("Quit", black, 550, 500, 100, 50)
+		button("Play", 150, 500, 100, 50, green, light_green)
+		button("Controls", 350, 500, 100, 50, yellow, light_yellow)
+		button("Quit", 550, 500, 100, 50, red, light_red)
 		
 		pygame.display.update()
 		clock.tick(5)
@@ -118,6 +113,16 @@ def message_to_screen(msg, color, y_displace = 0, size = "small"):
 	textRect.center = (display_width / 2), (display_height / 2) + y_displace
 	gameDisplay.blit(textSurf, textRect)
 
+def button(text, x, y, width, height, inactive_color, active_color):
+	cur = pygame.mouse.get_pos()
+	
+	if x + width > cur[0] > x and y + height > cur[1] > y:
+		pygame.draw.rect(gameDisplay, active_color, (x, y, width, height))
+	else:
+		pygame.draw.rect(gameDisplay, inactive_color, (x, y, width, height))
+	
+	text_to_button(text, black, x, y, width, height)
+	
 def gameLoop():	
 	gameExit = False
 	gameOver = False
