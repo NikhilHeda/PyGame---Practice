@@ -1,7 +1,6 @@
-Lengthen the snake
+Crossing over boundaries
 
-1. increase snake length by 1 in collision with the apple
+1. if apple thickness is more than the the snake, then crossing over the apple, is not handled properly, only cross over the top - left block works fine.
 
-2. Snake collision with itself
-	checking if the snake head is there in the snakelist, if yes, then COLLISION !
-	(except the last element because, that is the head itself !, so we ignore tht)
+2. Solution:
+		see theblocks, x boundaries and y boundaries, and thenc we check if the snake is within these boundaries.
