@@ -33,6 +33,18 @@ def gameIntro():
 	intro = True
 	
 	while intro:
+	
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_c:
+					intro = False
+				if event.key == pygame.K_q:
+					pygame.quit()
+					quit()
+
 		gameDisplay.fill(white)
 		message_to_screen("Welcome to Slither", green, y_displace = -100, size = "large")
 		message_to_screen("The objective is to eat apples", black, y_displace = -30)
@@ -40,7 +52,7 @@ def gameIntro():
 		message_to_screen("If you run into the edges, or yourself, you die !", black, y_displace = 50)
 		message_to_screen("Press C to play or Q to quit.", black, y_displace = 180)
 		pygame.display.update()
-		clock.tick(FPS)
+		clock.tick(5)
 		
 		
 def snake(block_size, snakelist):
