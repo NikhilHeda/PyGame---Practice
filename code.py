@@ -35,6 +35,27 @@ smallfont = pygame.font.SysFont("comicsansms", 25)
 medfont = pygame.font.SysFont("comicsansms", 50)
 largefont = pygame.font.SysFont("comicsansms", 80)
 
+def pause():
+	paused = True
+	
+	while paused:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_c:
+					paused = False
+				elif event.key == pygame.K_q:
+					pygame.quit()
+					quit()
+					
+		gameDisplay.fill(white)
+		message_to_screen("Paused", black, -100, size = 'large')
+		message_to_screen("Press C to continue or Q to Quit", black, 25)
+		pygame.display.update()
+		clock.tick(5)
+		
 def score(score):
 	text = smallfont.render("Score: " + str(score), True, black)
 	gameDisplay.blit(text, [0, 0])
@@ -60,7 +81,7 @@ def gameIntro():
 		message_to_screen("The objective is to eat apples", black, y_displace = -30)
 		message_to_screen("The more apples you eat the longer you get !", black, y_displace = 10)
 		message_to_screen("If you run into the edges, or yourself, you die !", black, y_displace = 50)
-		message_to_screen("Press C to play or Q to quit.", black, y_displace = 180)
+		message_to_screen("Press C to play, P to pause or Q to quit.", black, y_displace = 180)
 		pygame.display.update()
 		clock.tick(5)
 
@@ -155,6 +176,8 @@ def gameLoop():
 					direction = "down"
 					lead_y_change = block_size
 					lead_x_change = 0
+				elif event.key == pygame.K_p:
+					pause()
 		
 		if lead_x >= display_width or lead_x < 0 or  lead_y >= display_height or lead_y < 0:
 			gameOver = True
