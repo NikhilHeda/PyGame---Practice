@@ -10,7 +10,10 @@ Making it look good !
 	runs one time,
 	can be done multiple times, but we have already handled that.
 	
-4. Addint the apple sprite
+4. Adding the apple sprite
 
-5. adding the icon:
+5. Adding the icon:
 	best size for icon is 32 X 32
+
+6. Adding Score:
+	function score() to handle score
