@@ -33,9 +33,6 @@ clock = pygame.time.Clock()
 
 FPS = 15
 
-mainTankX = display_width * 0.9
-mainTankY = display_height * 0.9
-
 tankWidth = 40
 tankHeight = 20
 
@@ -172,14 +169,19 @@ def tank(x, y):
 	
 	pygame.draw.line(gameDisplay, black, (x, y), (x - 20, y - 20), turretWidth)
 	
-	startX = 15
+	startX = int(tankWidth / 2) - wheelWidth
 	for _ in range(7):
-		pygame.draw.circle(gameDisplay, black, (x - startX, y + 20), wheelWidth)
-		startX -= 5
+		pygame.draw.circle(gameDisplay, black, (x - startX, y + tankHeight), wheelWidth)
+		startX -= wheelWidth
 
 def gameLoop():	
 	gameExit = False
 	gameOver = False
+
+	mainTankX = display_width * 0.9
+	mainTankY = display_height * 0.9
+
+	tankMove = 0
 	
 	while not gameExit:
 	
@@ -203,20 +205,27 @@ def gameLoop():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				gameExit = True
+				
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_LEFT:
-					pass
+					tankMove = -5
 				elif event.key == pygame.K_RIGHT:
-					pass
+					tankMove = 5
 				elif event.key == pygame.K_UP:
 					pass
 				elif event.key == pygame.K_DOWN:
 					pass
 				elif event.key == pygame.K_p:
 					pause()
-		
+					
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_LEFT:
+					tankMove = 0
+				elif event.key == pygame.K_RIGHT:
+					tankMove = 0
+
 		gameDisplay.fill(white)
-		
+		mainTankX += tankMove
 		tank(mainTankX, mainTankY)
 		
 		pygame.display.update()
