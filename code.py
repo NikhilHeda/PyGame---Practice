@@ -18,6 +18,8 @@ light_yellow = (255, 255, 0)
 display_width = 800
 display_height = 600
 
+ground_height = 35
+
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Tanks')
 
@@ -239,7 +241,13 @@ def	fireShell(xy, tankx, tanky, turPos, gun_power, x_location, barrier_width, ra
 		check_y_1 = startingShell[1] <= display_height
 		check_y_2 = startingShell[1] >= display_height - randomHeight
 		
-		if startingShell[1] > display_height or (check_x_1 and check_x_2 and check_y_1 and check_y_2):
+		if startingShell[1] > display_height - ground_height:
+			hit_x = int(startingShell[0] * (display_height - ground_height) / startingShell[1])
+			hit_y = int(display_height - ground_height)
+			explosion(hit_x, hit_y)
+			fire = False
+			
+		if (check_x_1 and check_x_2 and check_y_1 and check_y_2):
 			hit_x = int(startingShell[0])
 			hit_y = int(startingShell[1])
 			explosion(hit_x, hit_y)
@@ -342,7 +350,7 @@ def gameLoop():
 		power(fire_power)
 
 		barrier(xlocation, randomHeight, barrier_width)
-
+		gameDisplay.fill(green, rect = [0, display_height - ground_height, display_width, ground_height])
 		pygame.display.update()
 		
 		clock.tick(FPS)
