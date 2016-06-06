@@ -185,10 +185,36 @@ def tank(x, y, turPos):
 	for _ in range(7):
 		pygame.draw.circle(gameDisplay, black, (x - startX, y + tankHeight), wheelWidth)
 		startX -= wheelWidth
-		
+	
+	return possibleTurrets[turPos]
+  
 def barrier(xlocation, randomHeight, barrier_width):
 	pygame.draw.rect(gameDisplay, black, [xlocation, display_height - randomHeight, barrier_width, randomHeight])
 
+def	fireShell(xy, tankx, tanky, turPos):
+	fire = True
+	startingShell = list(xy)
+	
+	while fire:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+		pygame.draw.circle(gameDisplay, red, (startingShell[0], startingShell[1]), 5)
+		
+		startingShell[0] -= (10 - turPos) * 2
+		
+		# y = x ** 2
+		startingShell[1] += int((((startingShell[0] - xy[0]) * 0.015) ** 2) - (turPos + turPos / (12 - turPos)) )
+		
+		if startingShell[1] > display_height:
+			fire = False
+		
+		pygame.display.update()
+		
+		clock.tick(100)
+		
+	
 def gameLoop():	
 	gameExit = False
 	gameOver = False
@@ -207,6 +233,9 @@ def gameLoop():
 	barrier_width = 50
 	
 	while not gameExit:
+		
+		gameDisplay.fill(white)
+		gun = tank(mainTankX, mainTankY, currentTurPos)
 	
 		if gameOver:
 			message_to_screen("Game Over.", red, y_displace = -50, size = "large")
@@ -240,14 +269,15 @@ def gameLoop():
 					changeTur = -1
 				elif event.key == pygame.K_p:
 					pause()
-					
+				elif event.key == pygame.K_SPACE:
+					fireShell(gun, mainTankX, mainTankY, currentTurPos)
+
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
 					tankMove = 0
 				elif event.key == pygame.K_UP or event.key == pygame.K_DOWN:
 					changeTur = 0
 
-		gameDisplay.fill(white)
 		mainTankX += tankMove
 		
 		currentTurPos += changeTur
@@ -262,8 +292,6 @@ def gameLoop():
 		if mainTankX + (tankWidth / 2) > display_width:
 			mainTankX -= 5
 
-		tank(mainTankX, mainTankY, currentTurPos)
-		
 		barrier(xlocation, randomHeight, barrier_width)
 
 		pygame.display.update()
