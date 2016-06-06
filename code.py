@@ -34,7 +34,10 @@ clock = pygame.time.Clock()
 FPS = 15
 
 mainTankX = display_width * 0.9
-mainTankY = display_height * 0.7
+mainTankY = display_height * 0.9
+
+tankWidth = 40
+tankHeight = 20
 
 smallfont = pygame.font.SysFont("comicsansms", 25)
 medfont = pygame.font.SysFont("comicsansms", 50)
@@ -159,7 +162,10 @@ def button(text, x, y, width, height, inactive_color, active_color, action = Non
 	text_to_button(text, black, x, y, width, height)
 
 def tank(x, y):
-	pygame.draw.circle(gameDisplay, black, (int(x), int(y)), 20)
+	x = int(x)
+	y = int(y)
+	pygame.draw.circle(gameDisplay, black, (x, y), int(tankHeight / 2))
+	pygame.draw.rect(gameDisplay, black, (x - tankHeight, y, tankWidth, tankHeight))
 
 def gameLoop():	
 	gameExit = False
