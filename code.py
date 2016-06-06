@@ -93,6 +93,30 @@ def gameIntro():
 		
 		pygame.display.update()
 		clock.tick(5)
+		
+def gameControls():
+	gcont = True
+	
+	while gcont:
+	
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+		gameDisplay.fill(white)
+		message_to_screen("Controls", green, y_displace = -100, size = "large")
+		message_to_screen("Fire: Spacebar", black, y_displace = -30)
+		message_to_screen("Move Turret: Up and Down arrows", black, y_displace = 10)
+		message_to_screen("Move Tank: Left and Right arrows", black, y_displace = 50)
+		message_to_screen("Pause: P", black, y_displace = 90)
+		
+		button("Play", 150, 500, 100, 50, green, light_green, action = "play")
+		button("Main", 350, 500, 100, 50, yellow, light_yellow, action = "main")
+		button("Quit", 550, 500, 100, 50, red, light_red, action = "quit")
+		
+		pygame.display.update()
+		clock.tick(5)
 
 def text_objects(text, color, size):
 	if size == "small":
@@ -124,9 +148,11 @@ def button(text, x, y, width, height, inactive_color, active_color, action = Non
 				pygame.quit()
 				quit()
 			elif action == "controls":
-				pass
+				gameControls()
 			elif action == "play":
 				gameLoop()
+			elif action == "main":
+				gameIntro()
 	else:
 		pygame.draw.rect(gameDisplay, inactive_color, (x, y, width, height))
 	
