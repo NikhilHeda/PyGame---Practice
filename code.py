@@ -186,8 +186,8 @@ def tank(x, y, turPos):
 		pygame.draw.circle(gameDisplay, black, (x - startX, y + tankHeight), wheelWidth)
 		startX -= wheelWidth
 		
-def barrier():
-	xlocation = int(display_width / 2) + random.randint(-0.2 * display_width, 0.2 * display_width)
+def barrier(xlocation, randomHeight):
+	pygame.draw.rect(gameDisplay, black, [xlocation, display_height - randomHeight, 50, randomHeight])
 
 def gameLoop():	
 	gameExit = False
@@ -200,6 +200,9 @@ def gameLoop():
 	
 	currentTurPos = 0
 	changeTur = 0
+	
+	xlocation = int(display_width / 2) + random.randint(-0.2 * display_width, 0.2 * display_width)
+	randomHeight = random.randrange(display_height * 0.1, display_height * 0.6)
 	
 	while not gameExit:
 	
@@ -254,6 +257,8 @@ def gameLoop():
 		
 		tank(mainTankX, mainTankY, currentTurPos)
 		
+		barrier(xlocation, randomHeight)
+
 		pygame.display.update()
 		
 		clock.tick(FPS)
