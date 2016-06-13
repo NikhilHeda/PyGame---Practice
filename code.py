@@ -388,8 +388,9 @@ def	e_fireShell(xy, tankx, tanky, turPos, gun_power, x_location, barrier_width, 
 		
 		startingShell[0] += (10 - turPos) * 2
 		
-		# y = x ** 2
-		startingShell[1] += int((((startingShell[0] - xy[0]) * 0.015 / (currentPower / 50)) ** 2) - (turPos + turPos / (12 - turPos)) )
+		gun_power = random.randrange(int(currentPower * 0.9), int(currentPower * 1.10))
+		
+		startingShell[1] += int((((startingShell[0] - xy[0]) * 0.015 / (gun_power / 50)) ** 2) - (turPos + turPos / (12 - turPos)) )
 		
 		check_x_1 = startingShell[0] <= x_location + barrier_width
 		check_x_2 = startingShell[0] >= x_location
