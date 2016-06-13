@@ -1,6 +1,6 @@
 import cx_Freeze
 
-executables = [cx_Freeze.Executable("code.py")]
+executables = [cx_Freeze.Executable("snake.py")]
 
 cx_Freeze.setup(
 	name = "Slither",
