@@ -315,8 +315,16 @@ def	fireShell(xy, tankx, tanky, turPos, gun_power, x_location, barrier_width, ra
 		if startingShell[1] > display_height - ground_height:
 			hit_x = int(startingShell[0] * (display_height - ground_height) / startingShell[1])
 			hit_y = int(display_height - ground_height)
-			if enemyTankX + 15 > hit_x > enemyTankX - 15:
+			
+			if enemyTankX + 10 > hit_x > enemyTankX - 10:
 				damage = 25
+			elif enemyTankX + 15 > hit_x > enemyTankX - 15:
+				damage = 18
+			elif enemyTankX + 25 > hit_x > enemyTankX - 25:
+				damage = 10
+			elif enemyTankX + 35 > hit_x > enemyTankX - 35:
+				damage = 5
+			
 			explosion(hit_x, hit_y)
 			fire = False
 			
@@ -401,8 +409,15 @@ def	e_fireShell(xy, tankx, tanky, turPos, gun_power, x_location, barrier_width, 
 		if startingShell[1] > display_height - ground_height:
 			hit_x = int(startingShell[0] * (display_height - ground_height) / startingShell[1])
 			hit_y = int(display_height - ground_height)
-			if ptankX + 15 > hit_x > ptankX - 15:
+			if ptankX + 10 > hit_x > ptankX - 10:
 				damage = 25
+			elif ptankX + 15 > hit_x > ptankX - 15:
+				damage = 18
+			elif ptankX + 25 > hit_x > ptankX - 25:
+				damage = 10
+			elif ptankX + 35 > hit_x > ptankX - 35:
+				damage = 5
+
 			explosion(hit_x, hit_y)
 			fire = False
 			
