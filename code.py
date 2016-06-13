@@ -99,6 +99,48 @@ def gameIntro():
 		pygame.display.update()
 		clock.tick(5)
 		
+def game_over():
+	over = True
+	
+	while over:
+	
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+		gameDisplay.fill(white)
+		message_to_screen("Game Over", green, y_displace = -100, size = "large")
+		message_to_screen("You Die", black, y_displace = -30)
+		
+		button("Play Again", 150, 500, 150, 50, green, light_green, action = "play")
+		button("Controls", 350, 500, 100, 50, yellow, light_yellow, action = "controls")
+		button("Quit", 550, 500, 100, 50, red, light_red, action = "quit")
+		
+		pygame.display.update()
+		clock.tick(5)
+		
+def you_win():
+	win = True
+	
+	while win:
+	
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+		gameDisplay.fill(white)
+		message_to_screen("Congratulations !", green, y_displace = -100, size = "large")
+		message_to_screen("You Win", black, y_displace = -30)
+		
+		button("Play Again", 150, 500, 150, 50, green, light_green, action = "play")
+		button("Controls", 350, 500, 100, 50, yellow, light_yellow, action = "controls")
+		button("Quit", 550, 500, 100, 50, red, light_red, action = "quit")
+		
+		pygame.display.update()
+		clock.tick(5)
+		
 def gameControls():
 	gcont = True
 	
@@ -334,7 +376,6 @@ def	e_fireShell(xy, tankx, tanky, turPos, gun_power, x_location, barrier_width, 
 				#explosion(hit_x, hit_y)
 				fire = False
 
-	
 	fire = True
 	startingShell = list(xy)
 	
@@ -501,6 +542,11 @@ def gameLoop():
 		barrier(xlocation, randomHeight, barrier_width)
 		gameDisplay.fill(green, rect = [0, display_height - ground_height, display_width, ground_height])
 		pygame.display.update()
+		
+		if player_health < 1:
+			game_over()
+		elif enemy_health < 1:
+			you_win()
 		
 		clock.tick(FPS)
 
